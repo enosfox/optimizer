@@ -1,0 +1,32 @@
+{
+  "name": "kitsunecode/optimizer",
+  "description": "Optimizer makes it easy to bookmark your site tags, open graph and twitter card",
+  "keywords": [
+    "KitsuneCode",
+    "KitsuneWS",
+    "SEO",
+    "SMO",
+    "Meta Tags",
+    "Open Graph",
+    "Twitter Card",
+    "Facebook Tags"
+  ],
+  "homepage": "https://www.kitsunews.com",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Enos S. S. Silva",
+      "email": "devenos@icloud.com",
+      "role": "Developer"
+    }
+  ],
+  "require": {
+    "php": ">=7.4",
+    "ext-simplexml": "*"
+  },
+  "autoload": {
+    "psr-4": {
+      "KitsuneCode\\Optimizer\\": "src"
+    }
+  }
+}
