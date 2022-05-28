@@ -31,26 +31,31 @@ class Optimizer extends MetaTags
         $description = $this->filter($description);
 
         $this->buildTag("title", $title);
-        $this->buildMeta("name", ["title" => $title]);
         $this->buildMeta("name", ["description" => $description]);
         $this->buildMeta("name", ["robots" => ($follow ? "index, follow" : "noindex, nofollow")]);
         $this->buildLink("canonical", $url);
 
-        $this->buildMeta("itemprop", [
-            "name" => $title,
-            "description" => $description,
-            "url" => $url,
-            "image" => $image
-        ]);
-
         foreach ($this->tags as $meta => $prefix) {
-            $this->buildMeta($meta, [
-                "{$prefix}:title" => $title,
-                "{$prefix}:description" => $description,
-                "{$prefix}:url" => $url,
-                "{$prefix}:image" => $image
-            ]);
+            $this->buildMeta(
+                $meta,
+                [
+                    "{$prefix}:title" => $title,
+                    "{$prefix}:description" => $description,
+                    "{$prefix}:url" => $url,
+                    "{$prefix}:image" => $image
+                ]
+            );
         }
+
+        $this->buildMeta(
+            "itemprop",
+            [
+                "name" => $title,
+                "description" => $description,
+                "url" => $url,
+                "image" => $image
+            ]
+        );
 
         return $this;
     }
@@ -87,7 +92,6 @@ class Optimizer extends MetaTags
         $siteName = $this->filter($siteName);
 
         $this->buildMeta("property", [
-            "{$prefix}:image:width" => 1200,
             "{$prefix}:type" => $schema,
             "{$prefix}:site_name" => $siteName,
             "{$prefix}:locale" => $locale,
