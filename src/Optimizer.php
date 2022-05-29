@@ -95,6 +95,7 @@ class Optimizer extends MetaTags
             "{$prefix}:type" => $schema,
             "{$prefix}:site_name" => $siteName,
             "{$prefix}:locale" => $locale,
+            "{$prefix}:image:width" => 1200
         ]);
 
         return $this;
@@ -107,16 +108,14 @@ class Optimizer extends MetaTags
      * @param string|null $card
      * @return Optimizer
      */
-    public function twitterCard(string $creator, string $site, string $domain, string $card = null): Optimizer
+    public function twitterCard(string $site = null,string $card = null): Optimizer
     {
         $prefix = "twitter";
         $card = ($card ?? "summary_large_image");
 
         $this->buildMeta("name", [
             "{$prefix}:card" => $card,
-            "{$prefix}:site" => $site,
-            "{$prefix}:creator" => $creator,
-            "{$prefix}:domain" => $domain
+            "{$prefix}:site" => $site
         ]);
 
         return $this;

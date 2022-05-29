@@ -20,8 +20,6 @@
             "website"
         )
         ->twitterCard(
-            "@enoswmaster",
-            "@enoswmaster",
             "kitsunews.com",
             "summary_large_image"
         )
