@@ -7,12 +7,20 @@
     require __DIR__ . "/../vendor/autoload.php";
 
     $op = new \KitsuneCode\Optimizer\Optimizer();
-    echo $op
-        ->optimize(
-            "Optimizer Happy and @KitsuneCode",
-            "Is a compact and easy-to-use tag creator to optimize your site",
-            "https://www.kitsunews.com/kitsunecode/optimizer/example/",
-            "https://www.kitsunews.com/uploads/images/2021/08/exemplo-de-imagem-carregada-pra-compartilhamento-1511276983.jpg"
+    echo $op->optimize(
+            title: "Optimizer Happy and @KitsuneCode",
+            description: "Is a compact and easy-to-use tag creator to optimize your site",
+            url: "https://kitsunewsys.com/kitsunecode/optimizer/example/",
+            image: "https://kitsunewsys.com/uploads/images/2023/02/exemplo-de-imagem-carregada-pra-compartilhamento-1511276983.webp",
+            //follow: true, //opcional - lembrando que utilizando os nomes de parametro não precisa ser declarado
+                            //optional - remembering that using the parameter names does not need to be declared
+            publishedTime: "25-12-2022 13:40:58", //opcional - optional
+            modifiedTime: "15-02-2023", //opcional - optional
+            // timezone: 'UTC' //padrão America/Sao_paulo
+                                //standart America/Sao_paulo
+            author: "Jonh Joe",
+            organization: 'Kitsune Web System',
+            logo: 'https://kitsunewsys.com/uploads/images/2023/02/exemplo-de-logotipo.webp'
         )
         ->openGraph(
             "kitsunews",

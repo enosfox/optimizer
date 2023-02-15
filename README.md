@@ -48,10 +48,19 @@ require __DIR__ . "/../vendor/autoload.php";
 $op = new \KitsuneCode\Optimizer\Optimizer();
 
 echo $op->optimize(
-    "Optimizer Happy and @KitsuneCode",
-    "Is a compact and easy-to-use tag creator to optimize your site",
-    "https://www.kitsunews.com/kitsunecode/optimizer/example/",
-    "https://www.kitsunews.com/uploads/images/2021/08/exemplo-de-imagem-carregada-pra-compartilhamento-1511276983.jpg"
+        title: "Optimizer Happy and @KitsuneCode",
+        description: "Is a compact and easy-to-use tag creator to optimize your site",
+        url: "https://kitsunewsys.com/kitsunecode/optimizer/example/",
+        image: "https://kitsunewsys.com/uploads/images/2021/08/exemplo-de-imagem-carregada-pra-compartilhamento-1511276983.jpg",
+        //follow: true, //opcional - lembrando que utilizando os nomes de parametro não precisa ser declarado
+                        //optional - remembering that using the parameter names does not need to be declared
+        publishedTime: "25-12-2022 13:40:58", //opcional - optional
+        modifiedTime: "15-02-2023", //opcional - optional
+        // timezone: 'UTC' //padrão America/Sao_paulo
+                            //standart America/Sao_paulo
+        author: "Jonh Joe",
+        organization: 'Kitsune Web System',
+        logo: 'https://kitsunewsys.com/uploads/images/2023/02/exemplo-de-logotipo.webp'
 )->render();
 ```
 
@@ -59,21 +68,49 @@ echo $op->optimize(
 
 ````html
 <title>Optimizer Happy and @KitsuneCode</title>
-<meta property="og:url" content="https://www.kitsunews.com/kitsunecode/optimizer/example/"/>
+<script type="application/ld+json">{
+    "@context": "http://schema.org/",
+    "@type": "NewsArticle",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://kitsunewsys.com/kitsunecode/optimizer/example/"
+    },
+    "author": {
+        "@type": "Person",
+        "name": "Jonh Joe"
+    },
+    "publisher": {
+        "@type": "Organization",
+        "name": "Kitsune Web System",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "https://kitsunewsys.com/uploads/images/2023/02/exemplo-de-logotipo.webp"
+        }
+    },
+    "headline": "Optimizer Happy and @KitsuneCode",
+    "image": "https://kitsunewsys.com/uploads/images/2023/02/exemplo-de-imagem-carregada-pra-compartilhamento-1511276983.webp",
+    "datePublished": "2022-12-25T13:40:58-03:00",
+    "dateModified": "2023-02-15T00:00:00-03:00",
+    "description": "Is a compact and easy-to-use tag creator to optimize your site"
+  }
+</script>
+<meta property="og:url" content="https://kitsunewsys.com/kitsunecode/optimizer/example/"/>
 <meta property="og:title" content="Optimizer Happy and @KitsuneCode"/>
-<meta property="og:image" content="https://www.kitsunews.com/uploads/images/2021/08/exemplo-de-imagem-carregada-pra-compartilhamento-1511276983.jpg"/>
+<meta property="og:image" content="https://kitsunewsys.com/uploads/images/2021/08/exemplo-de-imagem-carregada-pra-compartilhamento-1511276983.jpg"/>
 <meta property="og:description" content="Is a compact and easy-to-use tag creator to optimize your site"/>
-<meta name="twitter:url" content="https://www.kitsunews.com/kitsunecode/optimizer/example/"/>
+<meta property="article:published_time" content="2022-12-25T13:40:58-03:00"/>
+<meta property="article:modified_time" content="2023-02-15T00:00:00-03:00"/>
+<meta name="twitter:url" content="https://kitsunewsys.com/kitsunecode/optimizer/example/"/>
 <meta name="twitter:title" content="Optimizer Happy and @KitsuneCode"/>
-<meta name="twitter:image" content="https://www.kitsunews.com/uploads/images/2021/08/exemplo-de-imagem-carregada-pra-compartilhamento-1511276983.jpg"/>
+<meta name="twitter:image" content="https://kitsunewsys.com/uploads/images/2021/08/exemplo-de-imagem-carregada-pra-compartilhamento-1511276983.jpg"/>
 <meta name="twitter:description" content="Is a compact and easy-to-use tag creator to optimize your site"/>
 <meta name="robots" content="index, follow"/>
 <meta name="description" content="Is a compact and easy-to-use tag creator to optimize your site"/>
-<meta itemprop="url" content="https://www.kitsunews.com/kitsunecode/optimizer/example/"/>
+<meta itemprop="url" content="https://kitsunewsys.com/kitsunecode/optimizer/example/"/>
 <meta itemprop="name" content="Optimizer Happy and @KitsuneCode"/>
-<meta itemprop="image" content="https://www.kitsunews.com/uploads/images/2021/08/exemplo-de-imagem-carregada-pra-compartilhamento-1511276983.jpg"/>
+<meta itemprop="image" content="https://kitsunewsys.com/uploads/images/2021/08/exemplo-de-imagem-carregada-pra-compartilhamento-1511276983.jpg"/>
 <meta itemprop="description" content="Is a compact and easy-to-use tag creator to optimize your site"/>
-<link rel="canonical" href="https://www.kitsunews.com/kitsunecode/optimizer/example/"/>
+<link rel="canonical" href="https://kitsunewsys.com/kitsunecode/optimizer/example/"/>
 ````
 
 #### @publisher
@@ -108,7 +145,7 @@ $op = new \KitsuneCode\Optimizer\Optimizer();
 echo $op->twitterCard(
   "kitsunews",
   "@enoswmaster",
-  "kitsunews.com",
+  "kitsunewsys.com",
   "summary_large_image"
 )->render();
 ```
@@ -117,7 +154,7 @@ echo $op->twitterCard(
 
 ````html
 <meta name="twitter:site" content="kitsunews"/>
-<meta name="twitter:domain" content="kitsunews.com"/>
+<meta name="twitter:domain" content="kitsunewsys.com"/>
 <meta name="twitter:creator" content="@enoswmaster"/>
 <meta name="twitter:card" content="summary_large_image"/>
 ````

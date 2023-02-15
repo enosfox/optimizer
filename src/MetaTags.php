@@ -148,6 +148,43 @@ class MetaTags
         $link->addAttribute("href", $href);
     }
 
+    
+    protected function buildScript(array $data): void
+    {
+        //Type Article, BlogPosting, NewsArticle
+        $data = (object) $data;
+        date_default_timezone_set($data->timezone);
+        $publishedTime = ($data->publishedTime)? '"datePublished": "'.date(DATE_ATOM, strtotime($data->publishedTime)).'",' : '';
+        $modifiedTime = ($data->modifiedTime)? '"dateModified": "'.date(DATE_ATOM, strtotime($data->modifiedTime)).'",' : '"dateModified": "'.date(DATE_ATOM, strtotime($data->publishedTime)).'",';
+        $json = '{
+            "@context": "http://schema.org/",
+            "@type": "NewsArticle",
+            "mainEntityOfPage": {
+                "@type": "WebPage",
+                "@id": "'.$data->url.'"
+            },
+            "author": {
+                "@type": "Person",
+                "name": "'.$data->author.'"
+            },
+            "publisher": {
+                "@type": "Organization",
+                "name": "'.$data->organization.'",
+                "logo": {
+                    "@type": "ImageObject",
+                    "url": "'.$data->logo.'"
+                }
+            },
+            "headline": "'.$data->title.'",
+            "image": "'.$data->image.'",
+            '.$publishedTime.'
+            '.$modifiedTime.'
+            "description": "'.$data->description.'"
+        }';
+        $script = $this->meta->addChild('script', $json);
+        $script->addAttribute("type", $this->filter('application/ld+json'));
+    }
+
     /**
      * @param string $string
      * @return string

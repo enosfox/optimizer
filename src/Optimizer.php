@@ -23,7 +23,13 @@ class Optimizer extends MetaTags
         string $description,
         string $url,
         string $image,
-        bool $follow = true
+        bool $follow = true,
+        ?string $publishedTime = null,
+        ?string $modifiedTime = null,
+        string $timezone = "America/Sao_Paulo",
+        ?string $author = null,
+        ?string $organization = null,
+        ?string $logo = null
     ): Optimizer {
         $this->data($title, $description, $url, $image);
 
@@ -34,6 +40,18 @@ class Optimizer extends MetaTags
         $this->buildMeta("name", ["description" => $description]);
         $this->buildMeta("name", ["robots" => ($follow ? "index, follow" : "noindex, nofollow")]);
         $this->buildLink("canonical", $url);
+        $this->buildScript([
+            "title" => $title, 
+            "image" => $image,
+            "description" => $description,
+            "url" => $url,
+            "publishedTime" => $publishedTime,
+            "modifiedTime" => $modifiedTime,
+            "timezone" => $timezone,
+            "author" => $author,
+            "organization" => $organization,
+            "logo" => $logo
+        ]);
 
         foreach ($this->tags as $meta => $prefix) {
             $this->buildMeta(
@@ -56,6 +74,14 @@ class Optimizer extends MetaTags
                 "image" => $image
             ]
         );
+
+        if($publishedTime){
+            date_default_timezone_set($timezone);
+            $this->buildMeta("property", [
+                "article:published_time" => date(DATE_ATOM, strtotime($publishedTime)),
+                "article:modified_time" => date(DATE_ATOM, strtotime($modifiedTime ?? $publishedTime))
+            ]);
+        }
 
         return $this;
     }
