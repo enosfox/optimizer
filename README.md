@@ -53,6 +53,7 @@ echo $op->optimize(
         url: "https://kitsunewsys.com/kitsunecode/optimizer/example/",
         image: "https://kitsunewsys.com/uploads/images/2021/08/exemplo-de-imagem-carregada-pra-compartilhamento-1511276983.jpg",
         //follow: true, //opcional - lembrando que utilizando os nomes de parametro não precisa ser declarado
+        article: true,
                         //optional - remembering that using the parameter names does not need to be declared
         publishedTime: "25-12-2022 13:40:58", //opcional - optional
         modifiedTime: "15-02-2023", //opcional - optional

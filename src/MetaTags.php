@@ -151,12 +151,23 @@ class MetaTags
     
     protected function buildScript(array $data): void
     {
-        //Type Article, BlogPosting, NewsArticle
+        //Type Article, BlogPosting, NewsArticle, WebSite
         $data = (object) $data;
+        $jsonWebsite = '{
+            "@context": "https://schema.org/",
+            "@type": "WebSite",
+            "name": "'.$data->title.'",
+            "url": "'.$data->url.'",
+            "potentialAction": {
+              "@type": "SearchAction",
+              "target": "'.$data->url.'/artigo/buscar/{search_term_string}",
+              "query-input": "required name=search_term_string"
+            }
+        }';
         date_default_timezone_set($data->timezone);
         $publishedTime = ($data->publishedTime)? '"datePublished": "'.date(DATE_ATOM, strtotime($data->publishedTime)).'",' : '';
-        $modifiedTime = ($data->modifiedTime)? '"dateModified": "'.date(DATE_ATOM, strtotime($data->modifiedTime)).'",' : '"dateModified": "'.date(DATE_ATOM, strtotime($data->publishedTime)).'",';
-        $json = '{
+        $modifiedTime = ($data->modifiedTime)? '"dateModified": "'.date(DATE_ATOM, strtotime($data->modifiedTime)).'"' : '';
+        $jsonArticle = '{
             "@context": "http://schema.org/",
             "@type": "NewsArticle",
             "mainEntityOfPage": {
@@ -177,10 +188,11 @@ class MetaTags
             },
             "headline": "'.$data->title.'",
             "image": "'.$data->image.'",
+            "description": "'.$data->description.'",
             '.$publishedTime.'
             '.$modifiedTime.'
-            "description": "'.$data->description.'"
         }';
+        $json = (!$data->article)? $jsonWebsite : $jsonArticle;
         $script = $this->meta->addChild('script', $json);
         $script->addAttribute("type", $this->filter('application/ld+json'));
     }

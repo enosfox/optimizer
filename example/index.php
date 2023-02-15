@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <?php
+    ini_set('display_errors', 1);
+    ini_set('display_startup_erros', 1);
+    error_reporting(E_ALL);
     require __DIR__ . "/../vendor/autoload.php";
 
     $op = new \KitsuneCode\Optimizer\Optimizer();
@@ -13,6 +16,7 @@
             url: "https://kitsunewsys.com/kitsunecode/optimizer/example/",
             image: "https://kitsunewsys.com/uploads/images/2023/02/exemplo-de-imagem-carregada-pra-compartilhamento-1511276983.webp",
             //follow: true, //opcional - lembrando que utilizando os nomes de parametro não precisa ser declarado
+            article: true,
                             //optional - remembering that using the parameter names does not need to be declared
             publishedTime: "25-12-2022 13:40:58", //opcional - optional
             modifiedTime: "15-02-2023", //opcional - optional
