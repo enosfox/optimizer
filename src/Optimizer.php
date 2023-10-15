@@ -40,6 +40,7 @@ class Optimizer extends MetaTags
 
         $this->buildTag("title", $title);
         $this->buildMeta("name", ["description" => $description]);
+        $this->buildMeta("name", ["keywords" => $keywords]);
         $this->buildMeta("name", ["robots" => ($follow ? "index, follow" : "noindex, nofollow")]);
         $this->buildLink("canonical", $url);
         $this->buildScript([
@@ -48,7 +49,6 @@ class Optimizer extends MetaTags
             "description" => $description,
             "url" => $url,
             "article" => $article,
-            "keywords" => $keywords,
             "publishedTime" => $publishedTime,
             "modifiedTime" => $modifiedTime,
             "timezone" => $timezone,
