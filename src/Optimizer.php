@@ -125,7 +125,8 @@ class Optimizer extends MetaTags
             "{$prefix}:type" => $schema,
             "{$prefix}:site_name" => $siteName,
             "{$prefix}:locale" => $locale,
-            "{$prefix}:image:width" => 1200
+            "{$prefix}:image:width" => 1200,
+            "{$prefix}:image:height" => 754
         ]);
 
         return $this;
