@@ -5,7 +5,7 @@ namespace KitsuneCode\Optimizer;
 /**
  * Class KitsuneCode Optimizer
  *
- * @author Enos S. S. Silva <https://github.com/enosfox>
+ * @author Enos S. S. Santos <https://github.com/enosfox>
  * @package KitsuneCode\Optimizer
  */
 class Optimizer extends MetaTags
@@ -95,7 +95,7 @@ class Optimizer extends MetaTags
      * @param string|null $fbAuthor
      * @return Optimizer
      */
-    public function publisher(string $fbPage, string $fbAuthor = null): Optimizer
+    public function publisher(string $fbPage, ?string $fbAuthor = null): Optimizer
     {
         $this->buildMeta("property", [
             "article:publisher" => "https://www.facebook.com/{$fbPage}"
@@ -139,7 +139,7 @@ class Optimizer extends MetaTags
      * @param string|null $card
      * @return Optimizer
      */
-    public function twitterCard(string $site = null,string $card = null): Optimizer
+    public function twitterCard(?string $site = null,?string $card = null): Optimizer
     {
         $prefix = "twitter";
         $card = ($card ?? "summary_large_image");
@@ -159,7 +159,7 @@ class Optimizer extends MetaTags
      * @param array|null $admins
      * @return Optimizer
      */
-    public function facebook(string $appId = null, string $pages = null, array $admins = null): Optimizer
+    public function facebook(?string $appId = null, ?string $pages = null, ?array $admins = null): Optimizer
     {
         if ($appId) {
             $fb = $this->meta->addChild("meta");

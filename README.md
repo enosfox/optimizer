@@ -24,7 +24,7 @@ KitsuneCode é um conjunto de pequenos e otimizados componentes PHP para tarefas
 Optimizer is available via Composer:
 
 ```bash
-"kitsunecode/optimizer": "1.0.*"
+"kitsunecode/optimizer": "2.0.*"
 ```
 
 or run

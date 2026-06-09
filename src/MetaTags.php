@@ -8,7 +8,7 @@ use stdClass;
 /**
  * Class KitsuneCode MetaTags
  *
- * @author Enos S. S. Silva <https://github.com/enosfox>
+ * @author Enos S. S. Santos <https://github.com/enosfox>
  * @package KitsuneCode\Optimizer
  */
 class MetaTags
@@ -68,7 +68,7 @@ class MetaTags
      * @param string|null $image
      * @return object|null
      */
-    public function data(string $title = null, string $desc = null, string $url = null, string $image = null): ?object
+    public function data(?string $title = null, ?string $desc = null, ?string $url = null, ?string $image = null): ?object
     {
         (!$title ?: $this->title = $title);
         (!$desc ?: $this->description = $desc);
@@ -124,7 +124,7 @@ class MetaTags
         foreach ($attributes as $name => $content) {
             $add = $this->meta->addChild("meta");
             $add->addAttribute($meta, $name);
-            $add->addAttribute("content", $content);
+            $add->addAttribute("content", $content ?? '');
         }
     }
 
